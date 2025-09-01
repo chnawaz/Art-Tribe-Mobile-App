@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   text1: {
-    fontFamily: "ClashGrotesk-SemiBold",
+    fontFamily: "ClashGroteskSemiBold",
     fontWeight: "600",
     fontSize: 32,
     lineHeight: 32,
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
   },
   text2: {
-    fontFamily: "Satoshi-Medium",
+    fontFamily: "SatoshiMedium",
     fontWeight: "500",
     fontSize: 12,
     lineHeight: 18,

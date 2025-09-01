@@ -12,7 +12,7 @@ export default function Tabsbtn({ image, title }) {
 
 const styles = StyleSheet.create({
   container: {
-    // width: 191,
+    width: "48%",
     justifyContent: "space-between",
     alignItems: "center",
     paddingTop: 12,
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     borderColor: "#FFFFFF0D",
   },
   title: {
-    fontFamily: "ClashGrotesk",
+    fontFamily: "ClashGroteskMedium",
     fontWeight: "500",
     fontSize: 14,
     lineHeight: 21,

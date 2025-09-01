@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
   },
   title: {
-    fontFamily: "Clash Grotesk",
+    fontFamily: "ClashGroteskMedium",
     fontWeight: "500",
     fontSize: 14,
     lineHeight: 21,

@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   tabText: {
     color: "#D4D4D4",
-    fontFamily: "ClashGrotesk",
+    fontFamily: "ClashGroteskRegular",
     fontWeight: "400",
     fontSize: 16,
     fontStyle: "normal",
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   },
   activeTabText: {
     color: "#FAFAFA",
-    fontFamily: "ClashGrotesk", 
+    fontFamily: "ClashGroteskMedium", 
     fontWeight: "500", 
     fontStyle: "normal", 
     fontSize: 16,

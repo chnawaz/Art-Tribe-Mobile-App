@@ -9,6 +9,8 @@ import {
 
 import Explore from "../../components/Explore";
 import Header from "../../components/Header";
+// import Svgg from "../../assets/svgs/home";
+import Tabbar from "../../components/Tabbar";
 
 export default function HomeScreen() {
   return (
@@ -17,6 +19,7 @@ export default function HomeScreen() {
         <View style={styles.container}>
           <Header />
           <Explore />
+          {/* <Tabbar /> */}
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -36,5 +39,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     gap: 32,
+    marginBottom: 32,
+    // marginBottom: 432,
   },
 });

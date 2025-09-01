@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
   },
   text: {
-    fontFamily: "Clash Grotesk",
-    fontWeight: "600", // Semibold
+    fontFamily: "ClashGroteskSemiBold",
+    fontWeight: "600",
     fontSize: 16,
     lineHeight: 24,
     letterSpacing: 0.32,

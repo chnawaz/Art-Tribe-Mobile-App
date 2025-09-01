@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text1: {
-    fontFamily: "Clash Grotesk",
+    fontFamily: "ClashGroteskSemiBold",
     fontWeight: "600",
     fontSize: 22,
     lineHeight: 33,

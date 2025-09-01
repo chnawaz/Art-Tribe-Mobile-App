@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 //     borderRadius: 8,
 //   },
   title: {
-    fontFamily: "ClashGrotesk",
+    fontFamily: "ClashGroteskMedium",
     fontWeight: "500",
     fontSize: 14,
     lineHeight: 21,

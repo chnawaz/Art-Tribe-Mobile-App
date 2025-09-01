@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
   },
   text1: {
-    fontFamily: "ClashGrotesk",
+    fontFamily: "ClashGroteskSemiBold",
     fontWeight: "600", // "600" = Semibold
     fontSize: 20,
     lineHeight: 20,
@@ -40,5 +40,5 @@ const styles = StyleSheet.create({
   view2: {
     width: "100%",
     backgroundColor: "#0E0F11",
-  }
+  },
 });

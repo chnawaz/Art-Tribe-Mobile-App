@@ -8,14 +8,17 @@ import React from "react";
 export default function Navbar() {
   const navigation = useNavigation();
   return (
-    
     <LinearGradient
-        colors={["rgba(0,0,0,0.15)", "transparent"]}
-        start={{ x: 0.5, y: 0 }} // top
-        end={{ x: 0.5, y: 1 }} // bottom
-        style={styles.container}
+      colors={["rgba(0,0,0,0.15)", "transparent"]}
+      start={{ x: 0.5, y: 0 }} // top
+      end={{ x: 0.5, y: 1 }} // bottom
+      style={styles.container}
+    >
+      <BlurView
+        intensity={70}
+        tint="systemUltraThinMaterialDark"
+        style={styles.blurContainer}
       >
-      <BlurView intensity={70} tint="systemUltraThinMaterialDark" style={styles.blurContainer}>
         <Pressable onPress={() => navigation.openDrawer()} style={styles.view1}>
           <Image
             source={require("../../assets/images/Frame.png")}
@@ -41,7 +44,6 @@ export default function Navbar() {
           </Pressable>
         </View>
       </BlurView>
-    {/* </View> */}
     </LinearGradient>
   );
 }
@@ -78,12 +80,11 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     gap: 4,
     overflow: "hidden",
-    // backgroundColor: "rgba(255, 255, 255, 0.1)",
     backgroundColor: "#00FF001A",
     alignItems: "center",
   },
   text1: {
-    fontFamily: "ClashGrotesk",
+    fontFamily: "ClashGroteskMedium",
     fontWeight: "500",
     fontSize: 14,
     lineHeight: 14 * 1.5,
@@ -91,53 +92,3 @@ const styles = StyleSheet.create({
     color: "#00FF00",
   },
 });
-
-// .................................. extra code ..................................
-
-// import { BlurView } from "expo-blur";
-// // import { LinearGradient } from "expo-linear-gradient";
-// import { LinearGradient } from "expo-linear-gradient";
-
-// import { View, Text, StyleSheet } from "react-native";
-
-// export default function BlurCard() {
-//   return (
-//     <View style={styles.wrapper}>
-//       <BlurView intensity={40} tint="dark" style={styles.blur}>
-//         <LinearGradient
-//           colors={["rgba(14, 15, 17, 0.3)", "rgba(14, 15, 17, 0)"]}
-//           start={{ x: 0.5, y: 0 }}
-//           end={{ x: 0.5, y: 1 }}
-//           style={styles.gradient}
-//         />
-//         <Text style={styles.text}>Blur + Gradient Overlay</Text>
-//       </BlurView>
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   wrapper: {
-//     flex: 1,
-//     backgroundColor: "#0E0F11",
-//     justifyContent: "center",
-//     alignItems: "center",
-//   },
-//   blur: {
-//     width: 300,
-//     height: 200,
-//     borderRadius: 16,
-//     overflow: "hidden", // important so gradient doesn't leak out
-//   },
-//   gradient: {
-//     ...StyleSheet.absoluteFillObject, // make gradient fill the BlurView
-//   },
-//   text: {
-//     color: "white",
-//     fontSize: 16,
-//     fontWeight: "600",
-//     position: "absolute",
-//     bottom: 16,
-//     left: 16,
-//   },
-// });

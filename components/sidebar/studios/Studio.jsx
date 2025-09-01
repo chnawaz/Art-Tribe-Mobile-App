@@ -33,16 +33,16 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   name: {
-    fontFamily: "Clash Grotesk",
-    fontWeight: "500", // Medium
+    fontFamily: "ClashGroteskMedium",
+    fontWeight: "500",
     fontSize: 14,
     lineHeight: 14,
     letterSpacing: 0.28,
     color: "#FFFFFF",
   },
   details: {
-    fontFamily: "Satoshi",
-    fontWeight: "500", // Medium
+    fontFamily: "SatoshiMedium",
+    fontWeight: "500",
     fontSize: 12,
     lineHeight: 12,
     letterSpacing: 0,
