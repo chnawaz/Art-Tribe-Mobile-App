@@ -19,7 +19,7 @@ export default function HomeScreen() {
         <View style={styles.container}>
           <Header />
           <Explore />
-          {/* <Tabbar /> */}
+          <Tabbar />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -40,6 +40,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     gap: 32,
     marginBottom: 32,
-    // marginBottom: 432,
+    marginBottom: 432,
   },
 });

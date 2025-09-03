@@ -1,11 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
+import CreationsSvg from '../../assets/svgs/creations'
 import React from 'react'
 
-export default function tab() {
+export default function Home() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}></Text>
-    </View>
+    <Pressable style={styles.container}>
+        <CreationsSvg />
+      <Text style={styles.text}>My Creations</Text>
+    </Pressable>
   )
 }
 
@@ -21,5 +23,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 12,
     letterSpacing: 0.24, 
+    color: "#FFFFFF",
     }
 })
