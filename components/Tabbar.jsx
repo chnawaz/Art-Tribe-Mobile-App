@@ -77,6 +77,7 @@
 // .....................................
 
 import { Pressable, Text, View, StyleSheet, Platform } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import { BlurView } from "expo-blur";
 import Addsvg from "../assets/svgs/Add";
 import HomeSvg from "../assets/svgs/home";
@@ -91,17 +92,20 @@ export default function Tabbar({ state, descriptors, navigation }) {
     <View style={styles.wrapper}>
       {/* Generate Button */}
       <View style={styles.btncontainer}>
-        //{" "}
         <Pressable style={styles.button1}>
-          // <Text style={styles.text1}>Generate</Text>
-          // <Addsvg />
-          //{" "}
+          <Text style={styles.text1}>Generate</Text>
+          <Addsvg />
         </Pressable>
-        //{" "}
       </View>
 
       {/* Blur Tabs */}
-      <BlurView intensity={80} tint="dark" style={styles.blurContainer}>
+      <LinearGradient
+            colors={["#0E0F11", "rgba(14, 15, 17, 0.8)"]}
+            start={{ x: 0.5, y: 0 }} // top
+            end={{ x: 0.5, y: 1 }} // bottom
+            style={styles.container}
+          >
+      <BlurView intensity={90} tint="dark" style={styles.blurContainer}>
         {state.routes.map((route, index) => {
           const { options } = descriptors[route.key];
           const label = options.title ?? route.name;
@@ -126,18 +130,14 @@ export default function Tabbar({ state, descriptors, navigation }) {
           return (
             <Pressable key={route.key} onPress={onPress} style={styles.tabItem}>
               {Icon && <Icon color={isFocused ? "#00FF00" : "#FFF"} />}
-              <Text
-                style={[
-                  styles.label,
-                  { color: isFocused ? "#00FF00" : "#FFF" },
-                ]}
-              >
+              <Text style={isFocused ? styles.presLabel : styles.label}>
                 {label}
               </Text>
             </Pressable>
           );
         })}
       </BlurView>
+      </LinearGradient>
     </View>
   );
 }
@@ -145,7 +145,7 @@ export default function Tabbar({ state, descriptors, navigation }) {
 const styles = StyleSheet.create({
   wrapper: {
     position: "absolute",
-    bottom: Platform.OS === "ios" ? 40 : 30,
+    bottom: Platform.OS === "ios" ? 40 : 40,
     width: "100%",
     flexDirection: "column",
     alignItems: "center",
@@ -201,5 +201,14 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     letterSpacing: 0.32,
     color: "#000000",
+  },
+  presLabel: {
+    fontFamily: "ClashGroteskSemiBold",
+    fontWeight: "600",
+    fontStyle: "normal",
+    fontSize: 12,
+    lineHeight: 12,
+    letterSpacing: 0.24,
+    color: "#00FF00",
   },
 });

@@ -1,17 +1,18 @@
 import { Pressable, StyleSheet, Text, View, Image } from "react-native";
+import ImageGeneration  from "../image generation/ImageGeneration";
 import React from "react";
 
 export default function Tabsbtn({ image, title }) {
   return (
-    <Pressable style={styles.container}>
+    <Pressable style={styles.containerPress}>
       <Image source={image} />
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.titleBtn}>{title}</Text>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  containerPress: {
     width: "48%",
     justifyContent: "space-between",
     alignItems: "center",
@@ -21,11 +22,13 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     borderWidth: 1,
     borderRadius: 8,
-    opacity: 1,
-    backgroundColor: "rgba(30, 30, 30, 0.85)",
+    // opacity: 1,
+    // backgroundColor: "rgba(30, 30, 30, 0.85)",
+    // backgroundColor: "rgba(14, 15, 17, 0.8)",
+    backgroundColor: "#262626",
     borderColor: "#FFFFFF0D",
   },
-  title: {
+  titleBtn: {
     fontFamily: "ClashGroteskMedium",
     fontWeight: "500",
     fontSize: 14,
