@@ -145,7 +145,8 @@ export default function Tabbar({ state, descriptors, navigation }) {
 const styles = StyleSheet.create({
   wrapper: {
     position: "absolute",
-    bottom: Platform.OS === "ios" ? 40 : 40,
+    // bottom: Platform.OS === "ios" ? 40 : 40,
+    bottom:0,
     width: "100%",
     flexDirection: "column",
     alignItems: "center",

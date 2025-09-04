@@ -14,7 +14,6 @@ import Tabbar from "../../components/Tabbar";
 
 export default function HomeScreen() {
   return (
-    <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.container}>
           <Header />
@@ -22,16 +21,15 @@ export default function HomeScreen() {
           <Tabbar />
         </View>
       </ScrollView>
-    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#0E0F11",
   },
   scrollContent: {
+    backgroundColor: "#0E0F11",
     // padding: 16,
   },
   container: {
@@ -40,6 +38,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     gap: 32,
     marginBottom: 32,
-    marginBottom: 432,
+    // marginBottom: 432,
   },
 });

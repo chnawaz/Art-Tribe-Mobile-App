@@ -1,66 +1,60 @@
 // import { Tabs } from "expo-router";
-// import { Ionicons } from "@expo/vector-icons";
+// import Tabbar from "../../components/Tabbar";
+// import { SafeAreaView } from "react-native-safe-area-context";
+// import { StatusBar, StyleSheet } from "react-native";
+// import * as NavigationBar from "expo-navigation-bar";
+// import { useEffect } from "react";
 
 // export default function TabLayout() {
+
 //   return (
-//     <Tabs screenOptions={{ headerShown: false }}>
-//       <Tabs.Screen
-//         name="index" // 👈 app/(tabs)/index.js
-//         options={{
-//           title: "Home",
-//           tabBarIcon: ({ color, size }) => (
-//             <Ionicons name="home" size={size} color={color} />
-//           ),
+//     <SafeAreaView style={styles.container}>
+//       <Tabs
+//         screenOptions={{
+//           headerShown: false,
 //         }}
-//       />
-//       <Tabs.Screen
-//         name="explore"
-//         options={{
-//           title: "Explore",
-//           tabBarIcon: ({ color, size }) => (
-//             <Ionicons name="compass" size={size} color={color} />
-//           ),
-//         }}
-//       />
-//       <Tabs.Screen
-//         name="myCreations"
-//         options={{
-//           title: "My Creations",
-//           tabBarIcon: ({ color, size }) => (
-//             <Ionicons name="albums" size={size} color={color} />
-//           ),
-//         }}
-//       />
-//       <Tabs.Screen
-//         name="profile"
-//         options={{
-//           title: "Profile",
-//           tabBarIcon: ({ color, size }) => (
-//             <Ionicons name="person" size={size} color={color} />
-//           ),
-//         }}
-//       />
-//     </Tabs>
+//         tabBar={(props) => <Tabbar {...props} />}
+//       >
+//         <Tabs.Screen name="index" options={{ title: "Home" }} />
+//         <Tabs.Screen name="explore" options={{ title: "Explore" }} />
+//         <Tabs.Screen name="myCreations" options={{ title: "My Creations" }} />
+//         <Tabs.Screen name="profile" options={{ title: "Profile" }} />
+//       </Tabs>
+//     </SafeAreaView>
 //   );
 // }
 
-// ................................................
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#000'
+//   },
+// });
 
+// ...............
 import { Tabs } from "expo-router";
-import Tabbar from "../../components/Tabbar"; // adjust if path different
+import Tabbar from "../../components/Tabbar";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar, StyleSheet } from "react-native";
+import * as NavigationBar from "expo-navigation-bar";
+import { useEffect } from "react";
 
 export default function TabLayout() {
   return (
-    <Tabs
-      screenOptions={{
-        headerShown: false,
-      }}
-      tabBar={(props) => <Tabbar {...props} />} 
-    >
-      <Tabs.Screen name="index" options={{ title: "Home" }} />
-      <Tabs.Screen name="explore" options={{ title: "Explore" }} />
-      <Tabs.Screen name="myCreations" options={{ title: "My Creations" }} />
-    </Tabs>
+    // < style={styles.container}>
+      <Tabs
+        screenOptions={{
+          headerShown: false,
+        }}
+        tabBar={(props) => <Tabbar {...props} />}
+      >
+        <Tabs.Screen name="index" options={{ title: "Home" }} />
+        <Tabs.Screen name="explore" options={{ title: "Explore" }} />
+        <Tabs.Screen name="myCreations" options={{ title: "My Creations" }} />
+        <Tabs.Screen name="profile" options={{ title: "Profile" }} />
+      </Tabs>
+  
   );
 }
+
 

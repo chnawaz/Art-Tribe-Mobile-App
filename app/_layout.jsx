@@ -1,4 +1,6 @@
 import { Drawer } from "expo-router/drawer";
+import { StatusBar, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useFonts } from "expo-font";
 
 import Sidebar from "../components/Sidebar";
@@ -20,6 +22,7 @@ export default function RootLayout() {
     return null; // Or <AppLoading /> if you want a splash
   }
   return (
+    <SafeAreaView style={styles.container}>
     <Drawer
       screenOptions={{
         headerShown: false,
@@ -36,5 +39,14 @@ export default function RootLayout() {
     >
       <Drawer.Screen name="(tabs)" options={{ drawerLabel: "Home" }} />
     </Drawer>
+    </SafeAreaView>
   );
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#000",
+  },
+});
