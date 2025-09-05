@@ -7,7 +7,10 @@ import {
   Image,
   Modal,
   TextInput,
+  Alert,
 } from "react-native";
+import * as ImagePicker from "expo-image-picker";
+import { BlurView } from "expo-blur";
 import Cross from "../assets/svgs/cross";
 import Gallary2 from "../assets/svgs/gallary2";
 import RightArrow from "../assets/svgs/rightArrow";
@@ -23,11 +26,53 @@ import ArrowDown from "../assets/svgs/arrowdown";
 import Addsvg from "../assets/svgs/Add";
 import Gallary3 from "../assets/svgs/gallary3";
 import Camera from "../assets/svgs/camera";
+import Bglogo from "../assets/svgs/bglogo";
+import PlayIcon from "../assets/svgs/playicon";
 
 export default function Header() {
+  const [image, setImage] = useState(null);
   const [value, setValue] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+  const [vmodalVisible, setVmodalVisible] = useState(false);
   const [generationType, setGenerationType] = useState(null);
+  const [vgenerationType, setVgenerationType] = useState(null);
+
+  // pick image from gallery
+  const pickImageFromGallery = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== "granted") {
+      Alert.alert("Permission Denied", "We need access to your gallery.");
+      return;
+    }
+
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+  };
+
+  // take picture from camera
+  const takePicture = async () => {
+    const { status } = await ImagePicker.requestCameraPermissionsAsync();
+    if (status !== "granted") {
+      Alert.alert("Permission Denied", "We need access to your camera.");
+      return;
+    }
+
+    const result = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+  };
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -75,11 +120,18 @@ export default function Header() {
         >
           {/* <ImageGeneration /> */}
           {generationType === "ImageGeneration" && (
-            <View style={styles.modalOverlay}>
+            // <View style={styles.modalOverlay}>
+            <BlurView intensity={50} tint="dark" style={styles.modalOverlay}>
               <View style={styles.containerIG}>
                 <View style={styles.view101}>
                   <Text style={styles.title101}>Image Generation</Text>
-                  <Pressable onPress={() => setModalVisible(!modalVisible)}>
+                  <Pressable
+                    onPress={() => {
+                      console.log("pressed---");
+                      setModalVisible(!modalVisible);
+                      setGenerationType("");
+                    }}
+                  >
                     <Cross />
                   </Pressable>
                 </View>
@@ -105,12 +157,13 @@ export default function Header() {
                   </Pressable>
                 </View>
               </View>
-            </View>
+              {/* </View> */}
+            </BlurView>
           )}
           {/* image generation end */}
           {/* image to image start */}
           {generationType === "ImagetoImage" && (
-            <View style={styles.modalOverlay}>
+            <BlurView intensity={50} tint="dark" style={styles.modalOverlay}>
               <View style={styles.containerIG}>
                 <View style={styles.view101}>
                   <Text style={styles.title101}>Image to Image</Text>
@@ -200,13 +253,24 @@ export default function Header() {
                   </Pressable>
                 </View>
               </View>
-            </View>
+            </BlurView>
           )}
           {/* image to image end */}
           {/* Product Photography start */}
           {generationType === "ProductPhotography" && (
-            <View style={styles.modalOverlay}>
+            <BlurView intensity={50} tint="dark" style={styles.modalOverlay}>
               <View style={styles.containerPP}>
+                <View style={styles.logo}>
+                  {image ? (
+                    <Image
+                      source={{ uri: image }}
+                      style={styles.imagePhone}
+                      resizeMode="contain"
+                    />
+                  ) : (
+                    <Bglogo />
+                  )}
+                </View>
                 <View style={styles.view101}>
                   <View style={styles.view101a}>
                     <Text style={styles.title101}>Product Photography</Text>
@@ -219,21 +283,24 @@ export default function Header() {
                 <View style={styles.ppview2}>
                   <View style={styles.ppview2o1}>
                     <View style={styles.ppview2o1a}>
-                      <Pressable style={styles.uploadimage}>
+                      <Pressable
+                        onPress={pickImageFromGallery}
+                        style={styles.uploadimage}
+                      >
                         <Gallary3 />
                         <View style={styles.uploadimagetext}>
                           <Text style={styles.head}>Upload Image</Text>
                           <Text style={styles.desc}>Browse from gallery</Text>
                         </View>
                       </Pressable>
-                      <Pressable style={styles.takeimage}>
+                      <Pressable onPress={takePicture} style={styles.takeimage}>
                         <Camera />
                         <Text style={styles.head}>Use Camer</Text>
                       </Pressable>
                     </View>
                     <View style={styles.ppview2o1b}>
                       <TextInput
-                      spellCheck={false}
+                        spellCheck={false}
                         style={styles.textArea}
                         value={value}
                         onChangeText={setValue}
@@ -260,16 +327,70 @@ export default function Header() {
                   </Pressable>
                 </View>
               </View>
-            </View>
+            </BlurView>
           )}
           {/* Product Photography end */}
         </Modal>
         {/* modal end */}
 
-        <Tabsbtn
+        {/* <Tabsbtn
           image={require("../assets/images/Play.png")}
           title="Video Generation"
-        />
+        /> */}
+        {/* video generation start */}
+        <Pressable
+          onPress={() => {
+            setVmodalVisible(true);
+            setVgenerationType("VideoGeneration");
+          }}
+          style={styles.containerPress}
+        >
+          {/* <Image source={require("../assets/images/Gallery_2.png")} /> */}
+          <PlayIcon />
+          <Text style={styles.titleBtn}>Video Generation</Text>
+        </Pressable>
+        {/* modal start */}
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={vmodalVisible}
+          onRequestClose={() => {
+            setVmodalVisible(!vmodalVisible);
+          }}
+        >
+          {/* <ImageGeneration /> */}
+          {vgenerationType === "VideoGeneration" && (
+            // <View style={styles.modalOverlay}>
+            <BlurView intensity={50} tint="dark" style={styles.modalOverlay}>
+              <View style={styles.containerIG}>
+                <View style={styles.view101}>
+                  <Text style={styles.title101}>Video Generation</Text>
+                  <Pressable onPress={() => setVmodalVisible(!vmodalVisible)}>
+                    <Cross />
+                  </Pressable>
+                </View>
+                <View style={styles.view2}>
+                  <Pressable style={styles.btn1}>
+                    <View style={styles.view201}>
+                      {/* <Gallary2 /> */}
+                      <Text style={styles.btn201}>
+                        Video Generation{" "}
+                        <Text style={{ color: "red" }}>
+                          is in Developing Phase...
+                        </Text>
+                      </Text>
+                    </View>
+                    <RightArrow />
+                  </Pressable>
+                </View>
+              </View>
+              {/* </View> */}
+            </BlurView>
+          )}
+          {/* image generation end */}
+        </Modal>
+        {/* modal end */}
+        {/* video generation end */}
       </View>
     </View>
   );
@@ -537,14 +658,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#262626",
   },
   textArea: {
-    flex: 1,
-    // color: "#262626",
+    // flex: 1,
     color: "#D4D4D4",
-    minHeight:132,
+    minHeight: 132,
     paddingHorizontal: 16,
     paddingTop: 16,
     outlineWidth: 0,
-    
+    textAlignVertical: "top",
   },
   ppview2o1c: {
     flexDirection: "row",
@@ -560,23 +680,30 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     paddingBottom: 12,
     paddingLeft: 16,
-    backgroundColor: "#262626"
+    backgroundColor: "#262626",
   },
-  btnstext:{
-     fontFamily: "ClashGroteskMedium",
+  btnstext: {
+    fontFamily: "ClashGroteskMedium",
     fontWeight: "500",
     fontStyle: "normal",
     fontSize: 16,
     lineHeight: 16,
     letterSpacing: 0.32,
-    color: '#FFFFFF'
+    color: "#FFFFFF",
+  },
+  logo: {
+    position: "absolute",
+    top: 211,
+  },
+  imagePhone: {
+    width: 100,
+    height: 100,
+    borderRadius: 20,
   },
   // Product Photography styles end
   modalOverlay: {
     flex: 1,
     justifyContent: "flex-end",
-    // backgroundColor: "rgba(0,0,0,0.5)",
     backgroundColor: "#090909CC",
   },
-  
 });
