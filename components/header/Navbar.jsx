@@ -3,6 +3,9 @@ import { useNavigation } from "@react-navigation/native";
 
 import { BlurView } from "expo-blur";
 import { LinearGradient } from "expo-linear-gradient";
+import Menu from "../../assets/svgs/menu";
+import Search from "../../assets/svgs/search";
+import Diamond1 from "../../assets/svgs/diamond1";
 import React from "react";
 
 export default function Navbar() {
@@ -20,26 +23,14 @@ export default function Navbar() {
         style={styles.blurContainer}
       >
         <Pressable onPress={() => navigation.openDrawer()} style={styles.view1}>
-          <Image
-            source={require("../../assets/images/Frame.png")}
-            style={styles.img}
-            resizeMode="contain"
-          />
+          <Menu />
         </Pressable>
         <View style={styles.view2}>
           <Pressable style={styles.press1}>
-            <Image
-              source={require("../../assets/images/search.png")}
-              style={styles.img}
-              resizeMode="contain"
-            />
+            <Search />
           </Pressable>
           <Pressable style={styles.press2}>
-            <Image
-              source={require("../../assets/images/diamond.png")}
-              style={styles.img}
-              resizeMode="contain"
-            />
+            <Diamond1 />
             <Text style={styles.text1}>Upgrade</Text>
           </Pressable>
         </View>

@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     paddingHorizontal: 12,
     borderRadius: 8,
-    marginRight: 12,
+    // marginRight: 12,
   },
   activeTab: {
     backgroundColor: "#1E2025",
