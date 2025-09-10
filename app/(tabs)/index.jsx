@@ -9,18 +9,18 @@ import {
 
 import Explore from "../../components/Explore";
 import Header from "../../components/Header";
-// import Svgg from "../../assets/svgs/home";
 import Tabbar from "../../components/Tabbar";
 import Slide from "../../components/slideshow";
+import Header2 from "../../components/header2"
 
 export default function HomeScreen() {
   return (
     <ScrollView contentContainerStyle={styles.scrollContent}>
       <View style={styles.container}>
-        <Header />
+        <Header2/>
+        {/* <Header /> */}
         <Explore />
         <Tabbar />
-        {/* <Slide /> */}
       </View>
     </ScrollView>
   );
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     gap: 32,
-    // marginBottom: 32,
-    marginBottom: 432,
+    marginBottom: 32,
+    // marginBottom: 432,
   },
 });

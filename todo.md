@@ -17,3 +17,13 @@ todos
 3- safe area view from bottom
 4- tab bar icon increase width when select
 6- navbar and header blur and color gradients check 
+
+
+
+
+10-09-2025
+1- images resizee property✅
+2- silde guesture
+3- next image screen
+4- modal height✅
+5- use camrea text ✅

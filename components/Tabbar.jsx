@@ -1,80 +1,3 @@
-// import { Pressable, StyleSheet, Text, View } from "react-native";
-// import { BlurView } from "expo-blur";
-// import Addsvg from "../assets/svgs/Add";
-// import HomeTab from "./tabbar/hometab";
-// import ExploreTab from "./tabbar/explore";
-// import MyCreations from "./tabbar/creations";
-// import React from "react";
-
-// export default function Tabbar() {
-//   return (
-//     <View style={styles.container}>
-//       <View style={styles.btncontainer}>
-//         <Pressable style={styles.button1}>
-//         <Text style={styles.text1}>Generate</Text>
-//         <Addsvg />
-//       </Pressable>
-//       </View>
-//       <BlurView
-//         intensity={70}
-//         tint="systemUltraThinMaterialDark"
-//         style={styles.blurContainer}
-//       >
-//         <HomeTab />
-//         <ExploreTab />
-//         <MyCreations />
-//       </BlurView>
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     width: "100%",
-//     flexDirection: "column",
-//     alignItems: "center",
-//     justifyContent: "center",
-//     gap: 8,
-//   },
-//   button1: {
-//     width: '100%',
-//     flexDirection: "row",
-//     alignItems: "center",
-//     justifyContent: "center",
-//     paddingTop: 8,
-//     paddingRight: 12,
-//     paddingBottom: 8,
-//     paddingLeft: 12,
-//     gap: 4,
-//     borderRadius: 8,
-//     backgroundColor: "#00FF00",
-//   },
-//   text1: {
-//     fontFamily: "ClashGroteskMedium",
-//     fontWeight: "500",
-//     fontSize: 16,
-//     fontStyle: "normal",
-//     lineHeight: 24,
-//     letterSpacing: 0.32,
-//     color: "#000000",
-//   },
-//   blurContainer: {
-//     width: "100%",
-//     flexDirection: "row",
-//     alignItems: "center",
-//     justifyContent: "space-between",
-//     paddingTop: 12,
-//     paddingRight: 56,
-//     paddingBottom: 16,
-//     paddingLeft: 56,
-//   },
-//   btncontainer: {
-//     width: "100%",
-//     paddingHorizontal: 48,
-//   }
-// });
-
-// .....................................
 
 import { Pressable, Text, View, StyleSheet, Platform } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
@@ -123,6 +46,15 @@ export default function Tabbar({ state, descriptors, navigation }) {
   const [value, setValue] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const [generationType, setGenerationType] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState("Product Photography");
+
+  const options = [
+    "Product Photography",
+    "Portrait Photography",
+    "Landscape Photography",
+    "Food Photography",
+  ];
 
   // pick image from gallery
   const pickImageFromGallery = async () => {
@@ -343,10 +275,42 @@ export default function Tabbar({ state, descriptors, navigation }) {
                   )}
                 </View>
                 <View style={styles.view101}>
-                  <View style={styles.view101a}>
+                  {/* <View style={styles.view101a}>
                     <Text style={styles.title101}>Product Photography</Text>
                     <ArrowDown />
-                  </View>
+                  </View> */}
+                  {/* ......... */}
+                  {/* Dropdown Button */}
+                  <Pressable
+                    style={styles.view101a}
+                    onPress={() => setOpen(!open)}
+                  >
+                    <Text style={styles.title101}>{selected}</Text>
+                    <ArrowDown />
+                    
+                  </Pressable>
+
+                  {/* Dropdown List */}
+                  {open && (
+                    <View style={styles.dropdownList}>
+                      {options.map((item, index) => (
+                        <Pressable
+                          key={index}
+                          style={({ pressed }) => [
+                            styles.option,
+                            pressed && { backgroundColor: "#333" }, // highlight on press
+                          ]}
+                          onPress={() => {
+                            setSelected(item);
+                            setOpen(false);
+                          }}
+                        >
+                          <Text style={styles.optionText}>{item}</Text>
+                        </Pressable>
+                      ))}
+                    </View>
+                  )}
+                  {/* ......... */}
                   <Pressable onPress={() => setModalVisible(!modalVisible)}>
                     <Cross />
                   </Pressable>
@@ -366,11 +330,13 @@ export default function Tabbar({ state, descriptors, navigation }) {
                       </Pressable>
                       <Pressable onPress={takePicture} style={styles.takeimage}>
                         <Camera />
-                        <Text style={styles.head}>Use Camer</Text>
+                        <Text style={styles.head}>Use Camera</Text>
                       </Pressable>
                     </View>
                     <View style={styles.ppview2o1b}>
                       <TextInput
+                      placeholder="AI Prompt"
+                      placeholderTextColor="#D4D4D4"
                         spellCheck={false}
                         style={styles.textArea}
                         value={value}
@@ -770,7 +736,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     position: "absolute",
-    top: 211,
+    top: "22%",
   },
   imagePhone: {
     width: 100,
@@ -782,5 +748,30 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
     backgroundColor: "#090909CC",
+    paddingTop: 52,
+  },
+  //   dropdownButton: {
+  //   flexDirection: "row",
+  //   alignItems: "center",
+  // },
+  // dropdownText: {
+  //   fontSize: 16,
+  //   fontWeight: "bold",
+  //   color: "white",
+  // },
+  dropdownList: {
+    position: "absolute",
+    top:25,
+    backgroundColor: "#222",
+    borderRadius: 8,
+    overflow: "hidden",
+  },
+  option: {
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+  },
+  optionText: {
+    fontSize: 14,
+    color: "white",
   },
 });
