@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, ScrollView, Pressable } from "react-native";
 import React, { useState } from "react";
 import Tabs from "./explore/Tabs";
-import ImageGallery from "./explore/ImageGallery";
+import ImageGallery from "./explore/gallary2";
 
 export default function Explore() {
   return (

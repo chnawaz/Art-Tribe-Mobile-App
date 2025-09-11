@@ -1,12 +1,33 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, ScrollView } from "react-native";
+import React from "react";
+import Explore2 from "../../components/Explore2";
 
 export default function Explore() {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text style={{color : "blue"}}> 😎 Explore</Text>
-    </View>
-  )
+    // <ScrollView contentContainerStyle={styles.scrollContent}>
+      <View style={styles.container}>
+        <Explore2 />
+      </View>
+    // </ScrollView>
+  );
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
+  scrollContent: {
+    backgroundColor: "#0E0F11",
+    paddingVertical: 12,
+  },
+  container: {
+    width: "100%",
+    flex: 1,
+    flexDirection: "column",
+    gap: 32,
+    marginBottom: 32,
+    // marginBottom: 432,
+     backgroundColor: "#0E0F11",
+    paddingVertical: 12,
+  },
+});
