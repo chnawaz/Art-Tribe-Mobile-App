@@ -81,7 +81,7 @@ export default function ImageGallery() {
                 style={{
                   width: columnWidth,
                   height: img.height,
-                  borderRadius: 8,
+                  // borderRadius: 8,
                 }}
                 resizeMode="cover"
               />
@@ -105,3 +105,6 @@ const styles = StyleSheet.create({
     gap: 4,
   },
 });
+
+
+
